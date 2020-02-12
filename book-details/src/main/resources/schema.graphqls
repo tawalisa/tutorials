@@ -6,11 +6,24 @@ type Book {
     id: ID
     name: String
     pageCount: Int
-    author: Author
+    author(filter: AuthorFilterArgs): Author
 }
 
 type Author {
     id: ID
     firstName: String
     lastName: String
+}
+
+input AuthorFilterArgs {
+  AND: [AuthorFilterArgs!]
+  OR: [AuthorFilterArgs!]
+  id: InputString
+  firstName: InputString
+  lastName: InputString
+}
+
+input InputString {
+  EQ: String
+  GT: String
 }
